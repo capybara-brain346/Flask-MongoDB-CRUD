@@ -5,8 +5,23 @@ import traceback
 logging.basicConfig(
     level=logging.ERROR,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[logging.FileHandler("error.log"), logging.StreamHandler()],
+    handlers=[logging.FileHandler("../logs/error.log"), logging.StreamHandler()],
 )
+
+
+def cors_middleware(app):
+    @app.after_request
+    def add_cors_headers(response):
+        response.headers["Access-Control-Allow-Origin"] = "*"
+        response.headers["Access-Control-Allow-Methods"] = (
+            "GET, POST, PUT, DELETE, OPTIONS"
+        )
+        response.headers["Access-Control-Allow-Headers"] = "Content-Type"
+
+        if request.method == "OPTIONS":
+            response.status_code = 204
+
+        return response
 
 
 def error_logging_middleware(app):
@@ -21,9 +36,7 @@ def error_logging_middleware(app):
             f"Traceback: {traceback.format_exc()}"
         )
 
-        return jsonify(
-            {"error": "An unexpected error occurred. Please try again later."}
-        ), 500
+        return jsonify({"error": "error occured!"}), 500
 
 
 def simple_validation_middleware(app):
@@ -31,8 +44,4 @@ def simple_validation_middleware(app):
     def validate_content_type():
         if request.method in ["POST", "PUT", "PATCH"]:
             if request.content_type != "application/json":
-                return jsonify(
-                    {
-                        "error": "Invalid Content-Type. Only 'application/json' is supported."
-                    }
-                ), 415
+                return jsonify({"error": "invalid content type!"}), 415
