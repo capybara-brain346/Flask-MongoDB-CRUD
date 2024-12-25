@@ -1,4 +1,5 @@
 from typing import List, Dict, Optional, Any
+import bcrypt
 from flask import Blueprint, jsonify, request
 from pymongo.cursor import Cursor
 from bson.objectid import ObjectId
@@ -37,20 +38,31 @@ def get_user(id: int):
 
 @user_routes.post("/users")
 def create_user():
-    data: Optional[Any] = request.json
+    data: Dict[Optional[Any]] = dict(request.json)
 
     if not all(key in data for key in ("name", "email", "password")):
         return jsonify({"error": "Missing required fields"}), 400
 
-    user_id: Any = db.users.insert_one(data).inserted_id
-    return jsonify({"id": str(user_id)}), 201
+    try:
+        hashed_password = bcrypt.hashpw(
+            data["password"].encode("utf-8"), bcrypt.gensalt()
+        )
+        data["password"] = hashed_password.decode("utf-8")
+    except Exception as e:
+        return jsonify({"error": f"Password hashing failed: {str(e)}"}), 500
+
+    try:
+        user_id: Any = db.users.insert_one(data).inserted_id
+        return jsonify({"id": str(user_id)}), 201
+    except Exception as e:
+        return jsonify({"error": f"Database insertion failed: {str(e)}"}), 500
 
 
 @user_routes.put("/users/<int:id>")
 def update_user(id: int):
     data: Optional[Any] = request.json
 
-    updated_user: Any = db.users.find_one_and_update(
+    updated_user: Optional[Any] = db.users.find_one_and_update(
         {"_id": ObjectId(id)}, {"$set": data}, return_document=True
     )
 
