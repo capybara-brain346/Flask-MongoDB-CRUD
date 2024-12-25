@@ -33,7 +33,7 @@ def get_user(id: int):
             {"id": str(user["_id"]), "name": user["name"], "email": user["email"]}
         )
     else:
-        return jsonify({"error": "User not found"}), 404
+        return jsonify({"error": "user not found!"}), 404
 
 
 @user_routes.post("/users")
@@ -41,21 +41,21 @@ def create_user():
     data: Dict[Optional[Any]] = dict(request.json)
 
     if not all(key in data for key in ("name", "email", "password")):
-        return jsonify({"error": "Missing required fields"}), 400
+        return jsonify({"error": "request missing a required field!"}), 400
 
     try:
         hashed_password = bcrypt.hashpw(
             data["password"].encode("utf-8"), bcrypt.gensalt()
         )
         data["password"] = hashed_password.decode("utf-8")
-    except Exception as e:
-        return jsonify({"error": f"Password hashing failed: {str(e)}"}), 500
+    except Exception:
+        return jsonify({"error": "failed to hah password!"}), 500
 
     try:
         user_id: Any = db.users.insert_one(data).inserted_id
         return jsonify({"id": str(user_id)}), 201
-    except Exception as e:
-        return jsonify({"error": f"Database insertion failed: {str(e)}"}), 500
+    except Exception:
+        return jsonify({"error": "failed to insert new user!"}), 500
 
 
 @user_routes.put("/users/<int:id>")
@@ -75,7 +75,7 @@ def update_user(id: int):
             }
         )
     else:
-        return jsonify({"error": "User not found"}), 404
+        return jsonify({"error": "user not found!"}), 404
 
 
 @user_routes.delete("/users/<int:id>")
@@ -83,6 +83,6 @@ def delete_user(id: int):
     result: DeleteResult = db.users.delete_one({"_id": ObjectId(id)})
 
     if result.deleted_count == 1:
-        return jsonify({"message": "User deleted"}), 200
+        return jsonify({"log": "user successfully deleted!"}), 200
     else:
-        return jsonify({"error": "User not found"}), 404
+        return jsonify({"error": "user not found!"}), 404
