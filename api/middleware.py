@@ -24,3 +24,15 @@ def error_logging_middleware(app):
         return jsonify(
             {"error": "An unexpected error occurred. Please try again later."}
         ), 500
+
+
+def simple_validation_middleware(app):
+    @app.before_request
+    def validate_content_type():
+        if request.method in ["POST", "PUT", "PATCH"]:
+            if request.content_type != "application/json":
+                return jsonify(
+                    {
+                        "error": "Invalid Content-Type. Only 'application/json' is supported."
+                    }
+                ), 415
