@@ -44,3 +44,9 @@ werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on 
 2024-12-26 10:30:03,024 - werkzeug - INFO - 127.0.0.1 - - [26/Dec/2024 10:30:03] "GET /users?limit=10 HTTP/1.1" 200 -
 2024-12-26 10:32:13,877 - werkzeug - INFO - 127.0.0.1 - - [26/Dec/2024 10:32:13] "PUT /users/676ce2cebb4e988864de1fae HTTP/1.1" 200 -
 2024-12-26 10:32:17,085 - werkzeug - INFO - 127.0.0.1 - - [26/Dec/2024 10:32:17] "GET /users?limit=10 HTTP/1.1" 200 -
+2024-12-26 14:33:15,874 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-12-26 14:33:15,874 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-26 14:33:15,876 - werkzeug - INFO -  * Restarting with stat
+2024-12-26 14:33:16,382 - werkzeug - WARNING -  * Debugger is active!
+2024-12-26 14:33:16,396 - werkzeug - INFO -  * Debugger PIN: 906-350-035
