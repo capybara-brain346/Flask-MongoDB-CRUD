@@ -1,8 +1,7 @@
-import os
 from pymongo import MongoClient
 
 
 def get_db():
-    client = MongoClient(os.getenv("MONGO_DB_PATH"))
-    client_db = client["users"]
-    return client_db["user_info"]
+    client = MongoClient("mongodb://mongodb:27017/")
+    db = client["users"]
+    return db["user_info"]

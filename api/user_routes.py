@@ -1,14 +1,8 @@
-from typing import List, Dict, Optional, Any
-from pymongo import MongoClient
+from typing import Optional
 import bcrypt
+from database import get_db
 from flask import Blueprint, jsonify, request
 from bson.objectid import ObjectId
-
-
-def get_db():
-    client = MongoClient("mongodb://localhost:27017/")
-    db = client["users"]
-    return db["user_info"]
 
 
 user_routes = Blueprint("user_routes", __name__)

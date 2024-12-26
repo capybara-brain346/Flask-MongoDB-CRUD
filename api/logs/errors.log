@@ -1,0 +1,52 @@
+2024-12-25 20:14:35,104 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-12-25 20:14:35,104 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-25 20:14:35,109 - werkzeug - INFO -  * Restarting with stat
+2024-12-25 20:14:35,547 - werkzeug - WARNING -  * Debugger is active!
+2024-12-25 20:14:35,562 - werkzeug - INFO -  * Debugger PIN: 906-350-035
+2024-12-25 20:15:11,914 - werkzeug - INFO - 127.0.0.1 - - [25/Dec/2024 20:15:11] "GET /users?limit=10 HTTP/1.1" 200 -
+2024-12-25 20:16:20,223 - root - ERROR - Exception occurred: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+Path: /users/676c15460dac017193c45b6f
+Method: GET
+Headers: {'User-Agent': 'PostmanRuntime/7.43.0', 'Accept': '*/*', 'Cache-Control': 'no-cache', 'Postman-Token': 'd9944e70-b7d8-4061-b713-2d0ad420f6e1', 'Host': '127.0.0.1:5000', 'Accept-Encoding': 'gzip, deflate, br', 'Connection': 'keep-alive'}
+Body: 
+Traceback: Traceback (most recent call last):
+  File "C:\Users\piyus\Code\Stuff\Flask-MongoDB-CRUD\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\piyus\Code\Stuff\Flask-MongoDB-CRUD\venv\lib\site-packages\flask\app.py", line 891, in dispatch_request
+    self.raise_routing_exception(req)
+  File "C:\Users\piyus\Code\Stuff\Flask-MongoDB-CRUD\venv\lib\site-packages\flask\app.py", line 500, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+  File "C:\Users\piyus\Code\Stuff\Flask-MongoDB-CRUD\venv\lib\site-packages\flask\ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "C:\Users\piyus\Code\Stuff\Flask-MongoDB-CRUD\venv\lib\site-packages\werkzeug\routing\map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+2024-12-25 20:16:20,234 - werkzeug - INFO - 127.0.0.1 - - [25/Dec/2024 20:16:20] "[35m[1mGET /users/676c15460dac017193c45b6f HTTP/1.1[0m" 500 -
+2024-12-25 20:16:46,044 - werkzeug - INFO -  * Detected change in 'C:\\Users\\piyus\\Code\\Stuff\\Flask-MongoDB-CRUD\\api\\app.py', reloading
+2024-12-25 20:16:46,513 - werkzeug - INFO -  * Restarting with stat
+2024-12-25 20:16:47,058 - werkzeug - WARNING -  * Debugger is active!
+2024-12-25 20:16:47,061 - werkzeug - INFO -  * Debugger PIN: 906-350-035
+2024-12-25 20:16:49,093 - werkzeug - INFO -  * Detected change in 'C:\\Users\\piyus\\Code\\Stuff\\Flask-MongoDB-CRUD\\api\\app.py', reloading
+2024-12-25 20:16:49,626 - werkzeug - INFO -  * Restarting with stat
+2024-12-25 20:17:35,201 - werkzeug - INFO -  * Restarting with stat
+2024-12-25 20:17:39,784 - werkzeug - INFO -  * Restarting with stat
+2024-12-26 10:27:50,014 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-12-26 10:27:50,015 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-26 10:27:50,016 - werkzeug - INFO -  * Restarting with stat
+2024-12-26 10:27:50,355 - werkzeug - WARNING -  * Debugger is active!
+2024-12-26 10:27:50,358 - werkzeug - INFO -  * Debugger PIN: 906-350-035
+2024-12-26 10:27:54,636 - werkzeug - INFO - 127.0.0.1 - - [26/Dec/2024 10:27:54] "GET /users?limit=10 HTTP/1.1" 200 -
+2024-12-26 10:28:04,526 - werkzeug - INFO - 127.0.0.1 - - [26/Dec/2024 10:28:04] "GET /users?limit=10 HTTP/1.1" 200 -
+2024-12-26 10:29:58,427 - werkzeug - INFO - 127.0.0.1 - - [26/Dec/2024 10:29:58] "[35m[1mPOST /users HTTP/1.1[0m" 201 -
+2024-12-26 10:30:03,024 - werkzeug - INFO - 127.0.0.1 - - [26/Dec/2024 10:30:03] "GET /users?limit=10 HTTP/1.1" 200 -
+2024-12-26 10:32:13,877 - werkzeug - INFO - 127.0.0.1 - - [26/Dec/2024 10:32:13] "PUT /users/676ce2cebb4e988864de1fae HTTP/1.1" 200 -
+2024-12-26 10:32:17,085 - werkzeug - INFO - 127.0.0.1 - - [26/Dec/2024 10:32:17] "GET /users?limit=10 HTTP/1.1" 200 -
+2024-12-26 14:33:15,874 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-12-26 14:33:15,874 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-26 14:33:15,876 - werkzeug - INFO -  * Restarting with stat
+2024-12-26 14:33:16,382 - werkzeug - WARNING -  * Debugger is active!
+2024-12-26 14:33:16,396 - werkzeug - INFO -  * Debugger PIN: 906-350-035
