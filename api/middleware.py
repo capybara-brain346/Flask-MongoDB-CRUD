@@ -2,6 +2,8 @@ from flask import jsonify, request
 import logging
 import traceback
 
+# simple logging configuration
+# in future can be integrated into tools like Sentry to better interface with logs
 logging.basicConfig(
     level=logging.ERROR,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -9,6 +11,8 @@ logging.basicConfig(
 )
 
 
+# cors middleware to prevent CORS attack
+# currently "*" routes are allowed, in production specific routes will be allowed to cross
 def cors_middleware(app):
     @app.after_request
     def add_cors_headers(response):
@@ -24,6 +28,7 @@ def cors_middleware(app):
         return response
 
 
+# error logging middleware, better formatted errors
 def error_logging_middleware(app):
     @app.errorhandler(Exception)
     def handle_exception(e):
@@ -39,6 +44,7 @@ def error_logging_middleware(app):
         return jsonify({"error": "error occured!"}), 500
 
 
+# validation middleware, check the request body has content of type json
 def simple_validation_middleware(app):
     @app.before_request
     def validate_content_type():
