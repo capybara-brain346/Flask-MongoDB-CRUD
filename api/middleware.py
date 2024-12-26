@@ -5,7 +5,7 @@ import traceback
 logging.basicConfig(
     level=logging.ERROR,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[logging.FileHandler("logs\errors.log"), logging.StreamHandler()],
+    handlers=[logging.FileHandler("logs/errors.log"), logging.StreamHandler()],
 )
 
 
