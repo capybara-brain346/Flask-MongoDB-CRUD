@@ -4,4 +4,5 @@ from pymongo import MongoClient
 
 def get_db():
     client = MongoClient(os.getenv("MONGO_DB_PATH"))
-    return client["users"]
+    client_db = client["users"]
+    return client_db["user_info"]
