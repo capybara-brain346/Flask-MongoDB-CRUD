@@ -106,3 +106,66 @@ docker-compose up --scale flask-backend=3
 For production, we can use a load balancer (e.g., NGINX) to distribute traffic.
 
 ---
+
+## Services Diagram
+
+```
++--------------------+           +--------------------+
+|   Client (User)    |           |  External Tools    |
+|--------------------|           | (Postman, Browser) |
+| Requests APIs      |           |--------------------|
+| (CRUD Operations)  |           | Testing APIs       |
++---------+----------+           +---------+----------+
+          |                                |
+          +--------------------------------+
+                            |
+                            v
+             +----------------------------+
+             |   Flask Backend Service    |
+             |----------------------------|
+             |  - Handles API requests    |
+             |  - Middleware:             |
+             |    * CORS                  |
+             |    * Error Handling        |
+             |    * Content-Type Check    |
+             |  - REST API Endpoints      |
+             |    * /users (GET, POST)    |
+             |    * /users/<id> (GET, PUT,|
+             |       DELETE)              |
+             |----------------------------|
+             | Environment:               |
+             |  - Gunicorn (Production)   |
+             |  - Flask App               |
+             |----------------------------|
+             | Docker:                    |
+             |  Containerized Flask App   |
+             +-------------+--------------+
+                           |
+                           v
+             +-------------+--------------+
+             |      MongoDB Service       |
+             |----------------------------|
+             |  - Database for user data  |
+             |  - Initialized on startup  |
+             |    via init.js script      |
+             |  - Stores collections      |
+             |    like 'users'            |
+             |----------------------------|
+             | Docker:                    |
+             |  Containerized MongoDB     |
+             +-------------+--------------+
+                           ^
+                           |
+           +---------------+----------------+
+           |      Docker Compose Network     |
+           |---------------------------------|
+           |  - Ensures communication       |
+           |    between Flask and MongoDB   |
+           |  - Single bridge network       |
+           |    for all containers          |
+           +---------------------------------+
+```
+
+```
+
+```
